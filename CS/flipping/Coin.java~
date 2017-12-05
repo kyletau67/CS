@@ -1,0 +1,90 @@
+/*Kyle Tau
+APCS1 pd 2
+HW 15 -- Wayne's World
+2017-10-11*/
+
+public class Coin {
+    //default constructor
+    public Coin() {
+	upFace = "heads";
+	flipCtr = 0;
+	headsCtr = 0;
+	tailsCtr = 0;
+	bias = 0.5;
+	
+    }
+    
+    //1st overloaded constructor, w/ name
+    public Coin(String coinname) {
+	this();
+	name = coinname;
+	bias = 0.0;
+    }
+
+    //2nd overloaded constructor, w/ name and face
+    public Coin(String coinname, String coinface) {
+	this();
+	name = coinname;
+	upFace = coinface;
+	bias = 1.0;
+    }
+
+    //toString method, gives name and current face
+    public String toString() {
+        return name + " -- " + upFace;
+    }
+
+    //flip method, considers bias when looking to return heads or tails
+    //random otherwise
+    public String flip() {
+	double rand = Math.random();
+	if (rand < bias) {
+	    upFace = "heads";
+	    headsCtr += 1;
+	    return "heads";
+	}
+	else {
+	    upFace = "tails";
+	    tailsCtr += 1;
+	    return "tails";
+	}
+    }
+
+    //assigning monetary value based on face name
+    private void assignValue() {
+	if (name == "penny") {
+	    value = 0.01; }
+	if (name == "nickel") {
+	    value = 0.05; }
+	if (name == "dime") {
+	    value = 0.10; }
+	if (name == "quarter") {
+	    value = 0.25; }
+	if (name == "dollar") {
+	    value = 1.00; }
+    }
+
+    //overwritten equals, compares faces, true if ==, false otherwise
+    public boolean equals(Coin person) {
+	String personface = new String("");
+	personface = person.upFace;
+	if (upFace == personface) {
+	    return true; }
+	else {
+	    return false; }
+    }
+
+			  
+    //attributes, all public
+    public double value;
+    public String upFace;
+    public String name;
+    public int flipCtr;
+    public int headsCtr;
+    public int tailsCtr;
+    public double bias;
+
+    //main method, does nothing 
+    public static void main(String[] args) {
+    }
+}//end Coin

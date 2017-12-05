@@ -1,0 +1,46 @@
+/*Kyle Tau
+APCS1 pd 2 
+HW 17 -- Do I repeat myself?
+2017-10-16 */
+
+public class Repeater {
+
+    //While loop method for posts
+    public String fenceW(int numPosts) {
+	String str = "";
+	int posts = 0;
+	if (numPosts <= 0) {
+	} //does nothing to str
+	if (numPosts > 0) {
+	    str += "|"; } //starting point for the str, when numPosts param is elligible 
+	while (posts < (numPosts - 1)) {
+	    str += "--|"; //adds --| to the string every time until posts is equal to numPosts
+	    posts += 1; }
+	return str; } //return final string
+
+    //Recursive method for posts
+    public String fenceR(int numPosts) {
+	if (numPosts <= 0) {
+	    return ""; } //returns nothing if param isn't positive (secondary base case)
+	else if (numPosts == 1) {
+	    return "|"; } //primary base case for when numPosts is 1
+	else {
+	    return "|--" + fenceR(numPosts - 1); } //recursive call of method, adds |--, then reduces numPosts by 1
+    }
+
+    //main method to test methods
+    public static void main(String[] args) {
+	//new Repeater to test non-static methods, tests 3, 5, 10, -1, and 0 as params
+	Repeater me = new Repeater();
+	System.out.println(me.fenceW(3));
+	System.out.println(me.fenceR(3));  //returns |--|--|
+	System.out.println(me.fenceW(5));
+	System.out.println(me.fenceR(5));  //returns |--|--|--|--|
+	System.out.println(me.fenceW(10));
+	System.out.println(me.fenceR(10)); //returns |--|--|--|--|--|--|--|--|--|
+	System.out.println(me.fenceW(-1));
+	System.out.println(me.fenceR(-1)); //returns empty string
+	System.out.println(me.fenceW(0));
+	System.out.println(me.fenceR(0));  //returns empty string
+    }
+}//end class Repeater

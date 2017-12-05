@@ -1,0 +1,194 @@
+/***
+ * class Pig
+ * a Pig Latin translator
+ * ~~~~~~~~~~~~~~~~~~~ SKELETON ~~~~~~~~~~~~~~~~~~~
+ *           9
+ *     ,--.-'-,--.
+ *     \  /-~-\  /
+ *    / )' a a `( \
+ *   ( (  ,---.  ) )
+ *    \ `(_o_o_)' /
+ *     \   `-'   /
+ *      | |---| |
+ *      [_]   [_]
+ *      PROTIP: Make this class compilable first,
+ *      then develop and test one method at a time.
+ *      NEVER STRAY TOO FAR FROM COMPILABILITY/RUNNABILITY!
+ ***/
+
+public class Pig
+{
+  //Q: How does this initialization make your life easier?
+  //A: So we can keep using this to check for vowels and consonants!
+  private static final String VOWELS = "aeiou";
+
+
+  /*=====================================
+    boolean hasA(String,String) -- checks for a letter in a String
+    pre:  w != null, letter.length() == 1
+    post: hasA("cat", "a") -> true
+    hasA("cat", "p")       -> false
+    =====================================*/
+  public static boolean hasA( String w, String letter ) 
+  {
+    return (w.indexOf(letter) > -1);
+  }//end hasA()
+
+
+  /*=====================================
+    boolean isAVowel(String) -- tells whether a letter is a vowel
+    precondition: letter.length() == 1
+    =====================================*/
+  public static boolean isAVowel( String letter ) 
+  {
+    for (int i = 0; i < VOWELS.length(); i++){
+      if (letter.equals(VOWELS.substring(i,i+1))){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  /*=====================================
+    int countVowels(String) -- counts vowels in a String
+    pre:  w != null
+    post: countVowels("meatball") -> 3
+    =====================================*/
+  public static int countVowels( String w ) 
+  {
+    int total = 0;
+    int origLength = w.length();
+    for (int i = 0; i < origLength; i++){
+      if (isAVowel(w.substring(i,i+1))){
+        total += 1;
+      }
+    }
+    return total;
+  }
+
+
+  /*=====================================
+    boolean hasAVowel(String) -- tells whether a String has a vowel
+    pre:  w != null
+    post: hasAVowel("cat") -> true
+    hasAVowel("zzz")       -> false
+    =====================================*/
+  public static boolean hasAVowel( String w ) 
+  {
+    int finVal = 0;
+    for (int i = 0 ; i < VOWELS.length(); i++){
+      finVal += w.indexOf(VOWELS.substring(i,i+1));
+    }
+    return (finVal > -5);
+  }
+
+
+  /*=====================================
+    String allVowels(String) -- returns vowels in a String
+    pre:  w != null
+    post: allVowels("meatball") -> "eaa"
+    =====================================*/
+  public static String allVowels( String w ) 
+  {
+    String rtrnStr = "";
+    String currLetter = "";
+    int origLength = w.length();
+    for (int i = 0; i < origLength; i++){
+      currLetter = w.substring(i,i+1);
+      if (isAVowel(currLetter)){
+        rtrnStr += currLetter;
+      }
+    }
+    return rtrnStr;
+  }
+
+  public static String firstVowel(String w){
+    return allVowels(w).substring(0,1);
+  }
+
+  public static boolean beginsWithVowel(String w){
+    return isAVowel(w.substring(0,1));
+  }
+
+  public static String engToPig(String w){
+    if (beginsWithVowel(w)){
+      return w + "way";
+    }else{
+      for (int i = 0; i < w.length(); i++){
+        if (isAVowel(w.substring(0,1))){
+          return w + "ay";
+        }else{
+          w = w.substring(1) + w.substring(0,1);
+        }
+      }
+    }
+  }
+
+  // capitalization and special y case will be implemented tomorrow
+
+  public static void sop(String inStr){
+    System.out.println(inStr);
+  }
+
+  public static void main( String[] args ) 
+  {
+    sop("hasA tests:");
+    sop("" + hasA("h","a")); //false
+    sop("" + hasA("h","h")); //true
+    sop("" + hasA("hi","a")); //false
+    sop("" + hasA("hi","i")); //true
+    sop("" + hasA("hi","h")); //true
+    sop("" + hasA("hiya","a")); //true
+    sop("" + hasA("hiya","k")); //false
+    sop("" + hasA("hiya","h")); //true
+    sop("===========");
+
+    sop("isAVowel tests:");
+    sop("" + isAVowel("a")); //true
+    sop("" + isAVowel("e")); //true
+    sop("" + isAVowel("i")); //true
+    sop("" + isAVowel("o")); //true
+    sop("" + isAVowel("u")); //true
+    sop("" + isAVowel("b")); //false
+    sop("" + isAVowel("k")); //false
+    sop("" + isAVowel("h")); //false
+    sop("===========");
+
+    sop("countVowels tests:");
+    sop("" + countVowels("t")); //0
+    sop("" + countVowels("th")); //0
+    sop("" + countVowels("the")); //1
+    sop("" + countVowels("ther")); //1
+    sop("" + countVowels("there")); //2
+    sop("" + countVowels("theref")); //2
+    sop("" + countVowels("therefo")); //3
+    sop("" + countVowels("therefor")); //3
+    sop("" + countVowels("therefore")); //4
+    sop("===========");
+
+    sop("hasAVowel tests:");
+    sop("" + hasAVowel("a")); //true
+    sop("" + hasAVowel("b")); //false
+    sop("" + hasAVowel("lol")); //true
+    sop("" + hasAVowel("why")); //false
+    sop("" + hasAVowel("ok")); //true
+    sop("" + hasAVowel("hiya")); //true
+    sop("" + hasAVowel("hy")); //false
+    sop("" + hasAVowel("no")); //true
+    sop("===========");
+
+    sop("allVowels tests:");
+    sop("" + allVowels("t")); //
+    sop("" + allVowels("th")); //
+    sop("" + allVowels("the")); //e
+    sop("" + allVowels("ther")); //e
+    sop("" + allVowels("there")); //ee
+    sop("" + allVowels("theref")); //ee
+    sop("" + allVowels("therefo")); //eeo
+    sop("" + allVowels("therefor")); //eeo
+    sop("" + allVowels("therefore")); //eeoe
+    sop("===========");
+  }//end main()
+
+}//end class Pig

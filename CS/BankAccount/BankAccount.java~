@@ -1,0 +1,41 @@
+public class BankAccount {
+    public String name;
+    private String password;
+    private int pin;
+    private int acctNum;
+    private double balance;
+
+    public static void main(String[] args){
+	BankAccount myBankAccount = new BankAccount();
+	myBankAccount.setAttributes("Angela Kyle Maxwell", "abc123", 1234, 123456789, 1000000.00);
+	myBankAccount.withdraw(1000);
+	myBankAccount.printInfo();
+
+	
+    }// end main
+
+    private void setAttributes (String newName, String newPass, int newPin, int newAcctNum, double newBalance) {
+	name = newName;
+	password = newPass;
+	pin = newPin;
+	acctNum = newAcctNum;
+	balance = newBalance;
+    }
+
+    private void printInfo () {
+	System.out.println("Holder's Name: " + name);
+	System.out.println("Password: " + password);
+	System.out.println("4-Digit Pin: " + pin);	
+	System.out.println("9-Digit Account Number: " + acctNum);
+	System.out.println("Current Balance: $" + balance);
+    }
+
+    private void withdraw (double amount) {
+	balance -= amount;
+    }
+    
+    private void deposit (double amount) {
+	balance += amount;
+    }
+      
+}//end BankAccount

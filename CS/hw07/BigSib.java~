@@ -1,0 +1,17 @@
+public class BigSib {
+    public BigSib(String msg) {
+	helloMsg = msg;
+	    }
+    private String helloMsg;
+    public static void main(String[] args) {
+    }
+    public String greet(String name) {
+	String thing;
+	    thing = helloMsg;
+	    thing += " ";
+	    thing += name;
+	return thing; }
+    public void setHelloMsg(String NewMsg) {
+	helloMsg = NewMsg;
+	    }
+}

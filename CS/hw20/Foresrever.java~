@@ -1,0 +1,35 @@
+/* Kyle Tau
+   APCS1 pd 2
+   HW 20 -- For the Love of Strings 
+   2017-10-19 */
+
+public class Foresrever {
+    //Fence method using a for loop
+    public String FenceF(int posts) {
+	String fence = "";
+	for (int p; p > 1 ; p --) {
+	    fence += "|--";
+	}
+	return fence + "|";
+    }
+
+    //reversing a string using a for loop
+    public String reverseF(String s) {
+	String rev = "";
+	int len = s.length();
+        for (int x = len; 0 < x < len; x++) {
+	    rev += s.substring(x,x+1);
+	}
+    }
+
+    //reversing a string using a recursion method
+    public String reverseR(String s) {
+	int len = s.length();
+	if (len == 1) {
+	    return s;
+	}
+	else {
+	    return s.substring(len) + reverseR(substring(0,len-1));
+	}
+    }
+}

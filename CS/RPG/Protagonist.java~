@@ -1,0 +1,42 @@
+public class Protagonist{
+    private String name;
+    private int life;
+    private int strength;
+    private int defense;
+    private double attackr;
+
+    public Protagonist(String x){
+	name = x;
+	life = 125;
+	strength = 100;
+	defense = 40;
+	attackr = .4;
+    }
+    public boolean isAlive(){
+	return life > 0;
+    }
+    public int getDefense(){
+	return defense;
+    }
+    public String getName(){
+	return name;
+    }
+    public void lowerHP(int x){
+	life -= x;
+    }
+    public int attack(Monster x){
+	int damage = (int) (strength * attackr) - x.getDefense();
+	x.lowerHP(damage);
+	return damage;
+    }
+    public void specialize(){
+	defense -= 10;
+	attackr += .6;
+    }
+    public void normalize(){
+	defense += 10;
+	attackr -= .6;
+    }
+}
+    
+	
